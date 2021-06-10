@@ -24,7 +24,7 @@ Opening = ""
 Termination = ""
 Game = ""
 #if winner = 1 white wins, if winner = -1 black wins, 0 means a tie
-Winner = 0
+Winner = -2
 
 
 for root, dirs, files in os.walk(path, topdown=False):
@@ -43,6 +43,20 @@ for root, dirs, files in os.walk(path, topdown=False):
                         #new game, save old game and reset vars
                         oldgamecount = gamecount
                         savegame(Event, Site, Date, Round, Whiteelo, Blackelo, Whiteratingdiff, Blackratingdiff, Eco, Opening, Termination, Game, Winner)
+                        Event = ""
+                        Site = ""
+                        Date = ""
+                        Round = "??"
+                        Whiteelo = 0
+                        Blackelo = 0
+                        Whiteratingdiff = 0
+                        Blackratingdiff = 0
+                        Eco = ""
+                        Opening = ""
+                        Termination = ""
+                        Game = ""
+                        #if winner = 1 white wins, if winner = -1 black wins, 0 means a tie
+                        Winner = -2
 
                     if(line[:8] == "[Event \""):
                         Event = line[8:].replace("\"]","")
@@ -82,4 +96,5 @@ for root, dirs, files in os.walk(path, topdown=False):
                             Winner = 0
                             line = line[:-7]
                         Game = line
+savegame(Event, Site, Date, Round, Whiteelo, Blackelo, Whiteratingdiff, Blackratingdiff, Eco, Opening, Termination, Game, Winner)
 
